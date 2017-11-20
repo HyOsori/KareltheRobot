@@ -1,11 +1,11 @@
 # Karel the Robot in OSORI
 ### INDEX
 
-1. [What is Karel?](#What-is-Karel)
-2. [Karel OSORI Description](#Karel-OSORI-Description)
-3. [Project tasks](#Project-tasks)
-4. [Reference](#Reference)
-5. [License](#License)
+1. [What is Karel?](#what-is-karel)
+2. [Karel OSORI Description](#karel-osori-description)
+3. [Project tasks](#project-tasks)
+4. [Reference](#reference)
+5. [License](#license)
 
 
 
