@@ -22,7 +22,14 @@ class Karel:
         pass
 
     def turn_left(self):
-        pass
+        if self.direction is Direction.East:
+            self.direction = Direction.North
+        elif self.direction is Direction.North:
+            self.direction = Direction.West
+        elif self.direction is Direction.South:
+            self.direction = Direction.East
+        else:
+            self.direction = Direction.South
 
     def pick_beeper(self):
         pass
