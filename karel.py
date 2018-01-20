@@ -100,28 +100,37 @@ class Karel(object):
 
     # conditions(facing or not)
     def facing_north(self):
-        pass
+        if self._facing == 0:
+            return True
+        else:
+            return False
 
     def not_facing_north(self):
-        pass
+        return not self.facing_north()
 
     def facing_south(self):
-        pass
+        if self._facing == 2:
+            return True
+        else:
+            return False
 
     def not_facing_south(self):
-        pass
+        return not self.facing_south()
 
     def facing_east(self):
-        if self.direction is Direction.East:
+        if self._facing == 3:
             return True
         else:
             return False
 
     def not_facing_east(self):
-        pass
+        return not self.facing_east()
 
     def facing_west(self):
-        pass
+        if self._facing == 1:
+            return True
+        else:
+            return False
 
     def not_facing_west(self):
-        pass
+        return not self.facing_west()
