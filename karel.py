@@ -62,41 +62,65 @@ class Karel(object):
 
     # conditions(clear or block)
     def front_is_clear(self):
-        pass
+        col = 2 * self._x - 1
+        row = 2 * self._y - 1
+        x, y = self._directions[self._facing]
+        return self.parent.is_clear(col+x, row+y)
 
     def front_is_blocked(self):
-        pass
+        return not self.front_is_clear()
 
     def left_is_clear(self):
-        pass
+        col = 2 * self._x - 1
+        row = 2 * self._y - 1
+        facing = self._facing + 1
+        facing %= 4
+        x, y = self._directions[facing]
+        return self.parent.is_clear(col + x, row + y)
 
     def left_is_blocked(self):
-        pass
+        return not self.front_is_clear()
 
     def right_is_clear(self):
-        pass
+        col = 2 * self._x - 1
+        row = 2 * self._y - 1
+        facing = self._facing + 3
+        facing %= 4
+        x, y = self._directions[facing]
+        return self.parent.is_clear(col + x, row + y)
 
     def right_is_blocked(self):
-        pass
+        return not self.right_is_clear()
 
     def back_is_clear(self):
-        pass
+        col = 2 * self._x - 1
+        row = 2 * self._y - 1
+        facing = self._facing + 2
+        facing %= 4
+        x, y = self._directions[facing]
+        return self.parent.is_clear(col + x, row + y)
 
     def back_is_blocked(self):
-        pass
+        return not self.back_is_clear()
 
     # conditions(beepers)
     def next_to_a_beeper(self):
-        pass
+        if (self._x, self._y) in self.parent.beepers_dict:
+            return True
+        else:
+            return False
 
     def not_next_to_a_beeper(self):
-        pass
+        return not self.next_to_a_beeper()
 
     def any_beepers_in_beeper_bag(self):
-        pass
+        if self._beeper_bag == 0:
+            return False
+        else:
+            return True
 
     def no_beepers_in_beeper_bag(self):
-        pass
+        return not self.any_beepers_in_beeper_bag()
 
     # conditions(facing or not)
     def facing_north(self):
