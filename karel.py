@@ -103,7 +103,7 @@ class Karel(object):
     def back_is_blocked(self):
         return not self.back_is_clear()
 
-    # conditions(beepers)
+    # conditions(about beepers)
     def next_to_a_beeper(self):
         if (self._x, self._y) in self.parent.beepers_dict:
             return True
