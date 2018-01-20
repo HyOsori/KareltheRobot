@@ -21,16 +21,16 @@ class World:
         self.set_boundaries()
 
     def set_boundaries(self):
-        for col in range(1, self.num_cols-1, 2):
+        for col in range(1, self.num_cols - 1, 2):
             if (col, 0) not in World.boundaries:
                 World.boundaries.append((col, 0))
             if (col, self.num_rows) not in World.boundaries:
-                World.boundaries.append((col, self.num_rows-1))
-        for row in range(1, self.num_rows-1, 2):
+                World.boundaries.append((col, self.num_rows - 1))
+        for row in range(1, self.num_rows - 1, 2):
             if (0, row) not in World.boundaries:
                 World.boundaries.append((0, row))
             if (self.num_cols, row) not in World.boundaries:
-                World.boundaries.append((self.num_cols-1, row))
+                World.boundaries.append((self.num_cols - 1, row))
 
     def reset_world(self, avenues=10, streets=10):
         self.avenues = avenues
@@ -43,7 +43,7 @@ class World:
         self.set_boundaries()
 
     def toggle_walls(self, col, row):
-        if (col + row) % 2 :
+        if (col + row) % 2:
             if (col, row) in World.walls_list:
                 World.walls_list.remove((col, row))
             else:
