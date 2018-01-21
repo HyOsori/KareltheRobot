@@ -65,7 +65,7 @@ class Karel:
     #def front_is_blocked(self):
     #    pass
 
-    def left_is_clear(self):        
+    def left_is_clear(walls):        
         if self.direction is Direction.East:
             wall_pos = ((self.position.street, self.position.avenue), Direction.North)
             if wall_pos in walls:
@@ -94,7 +94,7 @@ class Karel:
     #def left_is_blocked(self):
     #    pass
 
-    def right_is_clear(self):
+    def right_is_clear(walls):
         if self.direction is Direction.East:
             wall_pos = ((self.position.street, self.position.avenue - 1), Direction.North)
             if wall_pos in walls:
@@ -123,7 +123,7 @@ class Karel:
     #def right_is_blocked(self):
     #    pass
 
-    def back_is_clear(self):
+    def back_is_clear(walls):
         if self.direction is Direction.East:
             wall_pos = ((self.position.street, self.position.avenue), Direction.West)
             if wall_pos in walls:
