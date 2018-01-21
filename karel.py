@@ -1,219 +1,160 @@
-from constants import Position, Direction
+class Karel(object):
+    _directions = [(0, 1), (-1, 0), (0, -1), (1, 0)]
+    _facing_dict = {'E': 3, 'S': 2, 'W': 1, 'N': 0}
 
+    def __init__(self, parent=None, avenues=1, streets=1,
+                 facing='E', num_of_beeper=0):
+        self.parent = parent
+        self._beeper_bag = num_of_beeper
+        self._x = avenues
+        self._y = streets
+        self._facing = self._facing_dict[facing.upper()]
 
-class Karel:
-    def __init__(self, position, direction, num_of_beeper):
-        self.position = position
-        self.direction = direction
-        self.beepers = num_of_beeper
-        self.active = True
+    # status
+    def get_position(self):
+        return self._x, self._y
+
+    def _set_position(self, x, y):
+        self._x = x
+        self._y = y
+
+    def _get_facing(self):
+        return self._facing
+
+    def _get_facing_key(self):
+        for key in self._facing_dict.keys():
+            if self._facing_dict[key] == self._facing:
+                return key
 
     # actions
     def move(self):
         if self.front_is_clear():
-            if self.direction is Direction.East:
-                self.position.street += 1
-            elif self.direction is Direction.North:
-                self.position.avenue += 1
-            elif self.direction is Direction.South:
-                self.position.avenue -= 1
-            else:
-                self.position.street -= 1
-        pass
+            x, y = self._directions[self._facing]
+            self._x += x
+            self._y += y
+        else:
+            # raise move exception
+            pass
 
     def turn_left(self):
-        pass
+        self._facing += 1
+        self._facing %= 4
 
     def pick_beeper(self):
-        pass
+        if self.next_to_a_beeper():
+            self.parent.remove_beeper(self._x, self._y)
+            self._beeper_bag += 1
+        else:
+            # raise pick beeper exception
+            pass
 
     def put_beeper(self):
-        pass
+        if self.any_beepers_in_beeper_bag():
+            self._beeper_bag -= 1
+            self.parent.add_beeper(self._x, self._y)
+        else:
+            # raise put beeper exception
+            pass
 
     def turn_off(self):
-        self.active = False
-    
-    # conditions(clear or block)
-    # wall : ((street, avenue), direction) 
-    # wall.direction only uses Direction.West & Direction.North    
-    def front_is_clear(self,walls):
-        if self.direction is Direction.East:
-            wall_pos = ((self.position.street + 1, self.position.avenue), Direction.West)
-            if wall_pos in walls:
-                return False
-            else:
-                return True
-        if self.direction is Direction.North:
-            wall_pos = ((self.position.street, self.position.avenue), Direction.North)
-            if wall_pos in walls:
-                return False
-            else:
-                return True
-        if self.direction is Direction.West:
-            wall_pos = ((self.position.street, self.position.avenue), Direction.West)
-            if wall_pos in walls:
-                return False
-            else:
-                return True
-        if self.direction is Direction.South:
-            wall_pos = ((self.position.street, self.position.avenue - 1), Direction.West)
-            if wall_pos in walls:
-                return False
-            else:
-                return True
-
-    #def front_is_blocked(self):
-    #    pass
-
-    def left_is_clear(self,walls):        
-        if self.direction is Direction.East:
-            wall_pos = ((self.position.street, self.position.avenue), Direction.North)
-            if wall_pos in walls:
-                return False
-            else:
-                return True
-        if self.direction is Direction.North:
-            wall_pos = ((self.position.street, self.position.avenue), Direction.West)
-            if wall_pos in walls:
-                return False
-            else:
-                return True
-        if self.direction is Direction.West:
-            wall_pos = ((self.position.street, self.position.avenue - 1), Direction.North)
-            if wall_pos in walls:
-                return False
-            else:
-                return True
-        if self.direction is Direction.South:
-            wall_pos = ((self.position.street + 1, self.position.avenue), Direction.West)
-            if wall_pos in walls:
-                return False
-            else:
-                return True
-
-    #def left_is_blocked(self):
-    #    pass
-
-    def right_is_clear(self,walls):
-        if self.direction is Direction.East:
-            wall_pos = ((self.position.street, self.position.avenue - 1), Direction.North)
-            if wall_pos in walls:
-                return False
-            else:
-                return True
-        if self.direction is Direction.North:
-            wall_pos = ((self.position.street + 1, self.position.avenue), Direction.West)
-            if wall_pos in walls:
-                return False
-            else:
-                return True
-        if self.direction is Direction.West:
-            wall_pos = ((self.position.street, self.position.avenue), Direction.North)
-            if wall_pos in walls:
-                return False
-            else:
-                return True
-        if self.direction is Direction.South:
-            wall_pos = ((self.position.street, self.position.avenue), Direction.West)
-            if wall_pos in walls:
-                return False
-            else:
-                return True
-
-    #def right_is_blocked(self):
-    #    pass
-
-    def back_is_clear(self,walls):
-        if self.direction is Direction.East:
-            wall_pos = ((self.position.street, self.position.avenue), Direction.West)
-            if wall_pos in walls:
-                return False
-            else:
-                return True
-        if self.direction is Direction.North:
-            wall_pos = ((self.position.street, self.position.avenue - 1), Direction.North)
-            if wall_pos in walls:
-                return False
-            else:
-                return True
-        if self.direction is Direction.West:
-            wall_pos = ((self.position.street + 1, self.position.avenue), Direction.West)
-            if wall_pos in walls:
-                return False
-            else:
-                return True
-        if self.direction is Direction.South:
-            wall_pos = ((self.position.street, self.position.avenue), Direction.North)
-            if wall_pos in walls:
-                return False
-            else:
-                return True
-        
-
-    #def back_is_blocked(self):
-    #    pass
-
-    # conditions(beepers)
-    def next_to_a_beeper(self):
+        # print end successfully
         pass
+
+    # conditions(clear or block)
+    def front_is_clear(self):
+        col = 2 * self._x - 1
+        row = 2 * self._y - 1
+        x, y = self._directions[self._facing]
+        return self.parent.is_clear(col+x, row+y)
+
+    def front_is_blocked(self):
+        return not self.front_is_clear()
+
+    def left_is_clear(self):
+        col = 2 * self._x - 1
+        row = 2 * self._y - 1
+        facing = self._facing + 1
+        facing %= 4
+        x, y = self._directions[facing]
+        return self.parent.is_clear(col + x, row + y)
+
+    def left_is_blocked(self):
+        return not self.front_is_clear()
+
+    def right_is_clear(self):
+        col = 2 * self._x - 1
+        row = 2 * self._y - 1
+        facing = self._facing + 3
+        facing %= 4
+        x, y = self._directions[facing]
+        return self.parent.is_clear(col + x, row + y)
+
+    def right_is_blocked(self):
+        return not self.right_is_clear()
+
+    def back_is_clear(self):
+        col = 2 * self._x - 1
+        row = 2 * self._y - 1
+        facing = self._facing + 2
+        facing %= 4
+        x, y = self._directions[facing]
+        return self.parent.is_clear(col + x, row + y)
+
+    def back_is_blocked(self):
+        return not self.back_is_clear()
+
+    # conditions(about beepers)
+    def next_to_a_beeper(self):
+        if (self._x, self._y) in self.parent.beepers_dict:
+            return True
+        else:
+            return False
 
     def not_next_to_a_beeper(self):
-        pass
+        return not self.next_to_a_beeper()
 
     def any_beepers_in_beeper_bag(self):
-        pass
+        if self._beeper_bag == 0:
+            return False
+        else:
+            return True
 
     def no_beepers_in_beeper_bag(self):
-        pass
+        return not self.any_beepers_in_beeper_bag()
 
     # conditions(facing or not)
     def facing_north(self):
-        if self.direction is Direction.North:
+        if self._facing == 0:
             return True
         else:
             return False
 
     def not_facing_north(self):
-        if self.direction is not Direction.North:
-            return True
-        else:
-            return False
+        return not self.facing_north()
 
     def facing_south(self):
-        if self.direction is Direction.South:
+        if self._facing == 2:
             return True
         else:
             return False
 
     def not_facing_south(self):
-        if self.direction is not Direction.South:
-            return True
-        else:
-            return False
+        return not self.facing_south()
 
     def facing_east(self):
-        if self.direction is Direction.East:
+        if self._facing == 3:
             return True
         else:
             return False
 
     def not_facing_east(self):
-        if self.direction is not Direction.East:
-            return True
-        else:
-            return False
+        return not self.facing_east()
 
     def facing_west(self):
-        if self.direction is Direction.West:
+        if self._facing == 1:
             return True
         else:
             return False
 
     def not_facing_west(self):
-        if self.direction is not Direction.West:
-            return True
-        else:
-            return False
-
-    def __repr__(self):
-        return str(self.__dict__)
+        return not self.facing_west()
