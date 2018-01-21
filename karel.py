@@ -12,13 +12,13 @@ class Karel:
     def move(self):
         if self.front_is_clear():
             if self.direction is Direction.East:
-                self.position.street -= 1
+                self.position.street += 1
             elif self.direction is Direction.North:
                 self.position.avenue += 1
             elif self.direction is Direction.South:
                 self.position.avenue -= 1
             else:
-                self.position.street += 1
+                self.position.street -= 1
         pass
 
     def turn_left(self):
@@ -168,16 +168,28 @@ class Karel:
 
     # conditions(facing or not)
     def facing_north(self):
-        pass
+        if self.direction is Direction.North:
+            return True
+        else:
+            return False
 
     def not_facing_north(self):
-        pass
+        if self.direction is not Direction.North:
+            return True
+        else:
+            return False
 
     def facing_south(self):
-        pass
+        if self.direction is Direction.South:
+            return True
+        else:
+            return False
 
     def not_facing_south(self):
-        pass
+        if self.direction is not Direction.South:
+            return True
+        else:
+            return False
 
     def facing_east(self):
         if self.direction is Direction.East:
@@ -186,13 +198,22 @@ class Karel:
             return False
 
     def not_facing_east(self):
-        pass
+        if self.direction is not Direction.East:
+            return True
+        else:
+            return False
 
     def facing_west(self):
-        pass
+        if self.direction is Direction.West:
+            return True
+        else:
+            return False
 
     def not_facing_west(self):
-        pass
+        if self.direction is not Direction.West:
+            return True
+        else:
+            return False
 
     def __repr__(self):
         return str(self.__dict__)
