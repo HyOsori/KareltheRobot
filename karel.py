@@ -32,31 +32,126 @@ class Karel:
 
     def turn_off(self):
         self.active = False
-
+    
     # conditions(clear or block)
-    def front_is_clear(self):
-        pass
+    # wall : ((street, avenue), direction) 
+    # wall.direction only uses Direction.West & Direction.North    
+    def front_is_clear(walls):
+        if self.direction is Direction.East:
+            wall_pos = ((self.position.street + 1, self.position.avenue), Direction.West)
+            if wall_pos in walls:
+                return false
+            else:
+                return true
+        if self.direction is Direction.North:
+            wall_pos = ((self.position.street, self.position.avenue), Direction.North)
+            if wall_pos in walls:
+                return false
+            else:
+                return true
+        if self.direction is Direction.West:
+            wall_pos = ((self.position.street, self.position.avenue), Direction.West)
+            if wall_pos in walls:
+                return false
+            else:
+                return true
+        if self.direction is Direction.South:
+            wall_pos = ((self.position.street, self.position.avenue - 1), Direction.West)
+            if wall_pos in walls:
+                return false
+            else:
+                return true
 
-    def front_is_blocked(self):
-        pass
+    #def front_is_blocked(self):
+    #    pass
 
-    def left_is_clear(self):
-        pass
+    def left_is_clear(self):        
+        if self.direction is Direction.East:
+            wall_pos = ((self.position.street, self.position.avenue), Direction.North)
+            if wall_pos in walls:
+                return false
+            else:
+                return true
+        if self.direction is Direction.North:
+            wall_pos = ((self.position.street, self.position.avenue), Direction.West)
+            if wall_pos in walls:
+                return false
+            else:
+                return true
+        if self.direction is Direction.West:
+            wall_pos = ((self.position.street, self.position.avenue - 1), Direction.North)
+            if wall_pos in walls:
+                return false
+            else:
+                return true
+        if self.direction is Direction.South:
+            wall_pos = ((self.position.street + 1, self.position.avenue), Direction.West)
+            if wall_pos in walls:
+                return false
+            else:
+                return true
 
-    def left_is_blocked(self):
-        pass
+    #def left_is_blocked(self):
+    #    pass
 
     def right_is_clear(self):
-        pass
+        if self.direction is Direction.East:
+            wall_pos = ((self.position.street, self.position.avenue - 1), Direction.North)
+            if wall_pos in walls:
+                return false
+            else:
+                return true
+        if self.direction is Direction.North:
+            wall_pos = ((self.position.street + 1, self.position.avenue), Direction.West)
+            if wall_pos in walls:
+                return false
+            else:
+                return true
+        if self.direction is Direction.West:
+            wall_pos = ((self.position.street, self.position.avenue), Direction.North)
+            if wall_pos in walls:
+                return false
+            else:
+                return true
+        if self.direction is Direction.South:
+            wall_pos = ((self.position.street, self.position.avenue), Direction.West)
+            if wall_pos in walls:
+                return false
+            else:
+                return true
 
-    def right_is_blocked(self):
-        pass
+    #def right_is_blocked(self):
+    #    pass
 
     def back_is_clear(self):
-        pass
+        if self.direction is Direction.East:
+            wall_pos = ((self.position.street, self.position.avenue), Direction.West)
+            if wall_pos in walls:
+                return false
+            else:
+                return true
+        if self.direction is Direction.North:
+            wall_pos = ((self.position.street, self.position.avenue - 1), Direction.North)
+            if wall_pos in walls:
+                return false
+            else:
+                return true
+        if self.direction is Direction.West:
+            wall_pos = ((self.position.street + 1, self.position.avenue), Direction.West)
+            if wall_pos in walls:
+                return false
+            else:
+                return true
+        if self.direction is Direction.South:
+            wall_pos = ((self.position.street, self.position.avenue), Direction.North)
+            if wall_pos in walls:
+                return false
+            else:
+                return true
+        
 
-    def back_is_blocked(self):
-        pass
+    #def back_is_blocked(self):
+    #    pass
 
     # conditions(beepers)
     def next_to_a_beeper(self):
