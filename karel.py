@@ -104,14 +104,14 @@ class Karel(object):
         return not self.back_is_clear()
 
     # conditions(about beepers)
-    def next_to_a_beeper(self):
+    def on_beeper(self):
         if (self._x, self._y) in self.parent.beepers_dict:
             return True
         else:
             return False
 
-    def not_next_to_a_beeper(self):
-        return not self.next_to_a_beeper()
+    def not_on_beeper(self):
+        return not self.on_beeper()
 
     def any_beepers_in_beeper_bag(self):
         if self._beeper_bag == 0:

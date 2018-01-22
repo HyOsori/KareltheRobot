@@ -45,7 +45,7 @@ right_is_clear(), right_is_blocked(),
 
 back_is_clear(), back_is_blocked(),
 
-next_to_a_beeper(), not_next_to_a_beeper(),
+on_beeper(), not_on_beeper(),
 
 any_beepers_in_beeper_bag(), no_beepers_in_beeper_bag(),
 
