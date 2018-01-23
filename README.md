@@ -27,7 +27,7 @@
 
  Directions are defined as enumeration. [North, East, South, West]
 
- In Project, world file is saved as [`pickle`](https://docs.python.org/3/library/pickle.html) format which can serialize python object. The file contains number of streets, number of avenues, positions and directions of walls, beepers on world and its position, default position and direction of robot, number of beepers in robot's bag.
+~~In Project, world file is saved as [`pickle`](https://docs.python.org/3/library/pickle.html) format which can serialize python object. The file contains number of streets, number of avenues, positions and directions of walls, beepers on world and its position, default position and direction of robot, number of beepers in robot's bag.~~
 
 ### Robot
 
