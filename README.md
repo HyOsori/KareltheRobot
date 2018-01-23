@@ -33,7 +33,7 @@
 
  The **robot** has five primitive **actions**.
 
- move(), turnleft(), pickbeeper(), putbeeper(), turnoff()
+ move(), turn_left(), pick_beeper(), put_beeper(), turn_off()
 
  And robot can check some **conditions** about its status and surroundings.
 
@@ -60,10 +60,12 @@ facing_west(), not_facing_west()
 ### errors
 
 * Execution of move() when that move would cause Karel to hit a wall, or get outside the world range.
-* Execution of pickbeeper() when there are no beepers on the field Karel is standing on.
-* Execution of putbeeper() when Karel has no beepers in his bag.
-* Missing of the last turnoff() statement at the end of the program body.
+* Execution of pick_beeper() when there are no beepers on the field Karel is standing on.
+* Execution of put_beeper() when Karel has no beepers in his bag.
+* Missing of the last turn_off() statement at the end of the program body.
 
+### GUI
+ We planned to use PyQt(v5) to implement GUI.
 
 
 ## Project tasks
