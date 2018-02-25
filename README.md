@@ -27,13 +27,13 @@
 
  Directions are defined as enumeration. [North, East, South, West]
 
- In Project, world file is saved as [`pickle`](https://docs.python.org/3/library/pickle.html) format which can serialize python object. The file contains number of streets, number of avenues, positions and directions of walls, beepers on world and its position, default position and direction of robot, number of beepers in robot's bag.
+~~In Project, world file is saved as [`pickle`](https://docs.python.org/3/library/pickle.html) format which can serialize python object. The file contains number of streets, number of avenues, positions and directions of walls, beepers on world and its position, default position and direction of robot, number of beepers in robot's bag.~~
 
 ### Robot
 
  The **robot** has five primitive **actions**.
 
- move(), turnleft(), pickbeeper(), putbeeper(), turnoff()
+ move(), turn_left(), pick_beeper(), put_beeper(), turn_off()
 
  And robot can check some **conditions** about its status and surroundings.
 
@@ -45,7 +45,7 @@ right_is_clear(), right_is_blocked(),
 
 back_is_clear(), back_is_blocked(),
 
-next_to_a_beeper(), not_next_to_a_beeper(),
+on_beeper(), not_on_beeper(),
 
 any_beepers_in_beeper_bag(), no_beepers_in_beeper_bag(),
 
@@ -60,15 +60,24 @@ facing_west(), not_facing_west()
 ### errors
 
 * Execution of move() when that move would cause Karel to hit a wall, or get outside the world range.
-* Execution of pickbeeper() when there are no beepers on the field Karel is standing on.
-* Execution of putbeeper() when Karel has no beepers in his bag.
-* Missing of the last turnoff() statement at the end of the program body.
+* Execution of pick_beeper() when there are no beepers on the field Karel is standing on.
+* Execution of put_beeper() when Karel has no beepers in his bag.
+* Missing of the last turn_off() statement at the end of the program body.
 
+### GUI
+ We planned to use PyQt(v5) to implement GUI.
 
 
 ## Project tasks
 
 TBD
+
+
+
+## Usage
+
+TBD
+
 
 
 
