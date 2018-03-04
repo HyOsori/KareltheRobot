@@ -30,6 +30,7 @@ def format(color, style=''):
 # Syntax styles that can be shared by all languages
 STYLES = {
     'keyword': format('blue'),
+    'karelword': format('orange'),
     'operator': format('red'),
     'brace': format('darkGray'),
     'defclass': format('black', 'bold'),
@@ -52,6 +53,19 @@ class PythonHighlighter (QSyntaxHighlighter):
         'is', 'lambda', 'not', 'or', 'pass', 'print',
         'raise', 'return', 'try', 'while', 'yield',
         'None', 'True', 'False',
+    ]
+
+    # instruction for karel
+    karelwords = [
+        'move', 'turnleft', 'pickbeeper', 'putbeeper', 'turnoff',
+        'front_is_clear', 'front_is_blocked',
+        'left_is_clear', 'left_is_blocked',
+        'right_is_clear', 'right_is_blocked',
+        'back_is_clear', 'back_is_blocked',
+        'on_beeper', 'not_on_beeper',
+        'any_beepers_in_beeper_bag', 'no_beepers_in_beeper_bag',
+        'facing_north', 'facing_south', 'facing_east', 'facing_west', 
+        'not_facing_north', 'not_facing_south', 'not_facing_east', 'not_facing_west',
     ]
 
     # Python operators
@@ -85,6 +99,8 @@ class PythonHighlighter (QSyntaxHighlighter):
         # Keyword, operator, and brace rules
         rules += [(r'\b%s\b' % w, 0, STYLES['keyword'])
             for w in PythonHighlighter.keywords]
+        rules += [(r'\b%s\(\)\b' % w, 0, STYLES['karelword'])
+            for w in PythonHighlighter.karelwords]
         rules += [(r'%s' % o, 0, STYLES['operator'])
             for o in PythonHighlighter.operators]
         rules += [(r'%s' % b, 0, STYLES['brace'])
